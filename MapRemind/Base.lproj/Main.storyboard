@@ -56,6 +56,24 @@
             </objects>
             <point key="canvasLocation" x="769" y="-3"/>
         </scene>
+        <!--Add Reminder View Controller-->
+        <scene sceneID="2uu-2q-h2s">
+            <objects>
+                <viewController storyboardIdentifier="REMINDER_VC" id="mGW-oF-VRv" customClass="AddReminderViewController" customModule="MapRemind" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lIU-6g-8Lq"/>
+                        <viewControllerLayoutGuide type="bottom" id="88a-AZ-c3Q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iRx-cC-6DD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U8o-wD-KLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1475" y="-3"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Xa3-Lc-anl">
             <objects>

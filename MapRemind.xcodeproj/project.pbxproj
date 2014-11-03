@@ -15,6 +15,7 @@
 		15CE12271A081FC60001A630 /* MapRemindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE12261A081FC60001A630 /* MapRemindTests.swift */; };
 		15CE12311A0822E20001A630 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 15CE12301A0822E20001A630 /* README.md */; };
 		15CE12331A08245F0001A630 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE12321A08245F0001A630 /* MapViewController.swift */; };
+		15CE12361A0829090001A630 /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE12351A0829090001A630 /* AddReminderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		15CE12261A081FC60001A630 /* MapRemindTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRemindTests.swift; sourceTree = "<group>"; };
 		15CE12301A0822E20001A630 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		15CE12321A08245F0001A630 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../MapViewController.swift; sourceTree = "<group>"; };
+		15CE12351A0829090001A630 /* AddReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			children = (
 				15CE12341A0824690001A630 /* Controller Layer */,
 				15CE12141A081FC60001A630 /* Main.storyboard */,
+				15CE12351A0829090001A630 /* AddReminderViewController.swift */,
 				15CE12171A081FC60001A630 /* Images.xcassets */,
 				15CE12191A081FC60001A630 /* LaunchScreen.xib */,
 				15CE120F1A081FC60001A630 /* MapRemind.xcdatamodeld */,
@@ -226,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15CE12361A0829090001A630 /* AddReminderViewController.swift in Sources */,
 				15CE120E1A081FC60001A630 /* AppDelegate.swift in Sources */,
 				15CE12311A0822E20001A630 /* README.md in Sources */,
 				15CE12111A081FC60001A630 /* MapRemind.xcdatamodeld in Sources */,
