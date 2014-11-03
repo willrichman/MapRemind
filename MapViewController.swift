@@ -24,7 +24,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.mapView.delegate = self
         self.mapView.showsUserLocation = true
         
-        let longPress = UILongPressGestureRecognizer(target: self, action: "didLongPressMap")
+        let longPress = UILongPressGestureRecognizer(target: self, action: "didLongPressMap:")
         self.mapView.addGestureRecognizer(longPress)
         
         switch CLLocationManager.authorizationStatus() as CLAuthorizationStatus {
@@ -86,6 +86,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        
+        let reminderVC = self.storyboard?.instantiateViewControllerWithIdentifier("REMINDER_VC") as AddReminderViewController
+        reminderVC.locationManager = self.locationManager
+        reminderVC.selectedAnnotation = view.annotation
+        self.presentViewController(reminderVC, animated: true) { () -> Void in
+        }
     }
 }

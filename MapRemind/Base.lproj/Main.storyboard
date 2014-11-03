@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="769" y="659"/>
         </scene>
-        <!--Item 1-->
+        <!--Map View-->
         <scene sceneID="Tqh-Ip-uM2">
             <objects>
-                <viewController id="3om-VQ-aqa" customClass="MapViewController" customModule="MapRemind" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map View" id="3om-VQ-aqa" customClass="MapViewController" customModule="MapRemind" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y8P-1x-q9L"/>
                         <viewControllerLayoutGuide type="bottom" id="EkH-W2-aCe"/>
