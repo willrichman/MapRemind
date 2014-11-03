@@ -13,7 +13,6 @@
 		15CE12181A081FC60001A630 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15CE12171A081FC60001A630 /* Images.xcassets */; };
 		15CE121B1A081FC60001A630 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15CE12191A081FC60001A630 /* LaunchScreen.xib */; };
 		15CE12271A081FC60001A630 /* MapRemindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE12261A081FC60001A630 /* MapRemindTests.swift */; };
-		15CE12311A0822E20001A630 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 15CE12301A0822E20001A630 /* README.md */; };
 		15CE12331A08245F0001A630 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE12321A08245F0001A630 /* MapViewController.swift */; };
 		15CE12361A0829090001A630 /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE12351A0829090001A630 /* AddReminderViewController.swift */; };
 /* End PBXBuildFile section */
@@ -231,7 +230,6 @@
 			files = (
 				15CE12361A0829090001A630 /* AddReminderViewController.swift in Sources */,
 				15CE120E1A081FC60001A630 /* AppDelegate.swift in Sources */,
-				15CE12311A0822E20001A630 /* README.md in Sources */,
 				15CE12111A081FC60001A630 /* MapRemind.xcdatamodeld in Sources */,
 				15CE12331A08245F0001A630 /* MapViewController.swift in Sources */,
 			);
