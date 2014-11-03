@@ -21,4 +21,18 @@ class AddReminderViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func didPressSaveReminderButton(sender: AnyObject) {
+        var geoRegion = CLCircularRegion(center: selectedAnnotation.coordinate, radius: 100.0, identifier: "TestRegion")
+        
+        self.locationManager .startMonitoringForRegion(geoRegion)
+        
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+        })
+    }
+    
+    @IBAction func didPressCancelButton(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+        })
+    }
+    
 }

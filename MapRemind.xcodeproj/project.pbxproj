@@ -85,7 +85,6 @@
 			children = (
 				15CE12341A0824690001A630 /* Controller Layer */,
 				15CE12141A081FC60001A630 /* Main.storyboard */,
-				15CE12351A0829090001A630 /* AddReminderViewController.swift */,
 				15CE12171A081FC60001A630 /* Images.xcassets */,
 				15CE12191A081FC60001A630 /* LaunchScreen.xib */,
 				15CE120F1A081FC60001A630 /* MapRemind.xcdatamodeld */,
@@ -124,6 +123,7 @@
 			children = (
 				15CE120D1A081FC60001A630 /* AppDelegate.swift */,
 				15CE12321A08245F0001A630 /* MapViewController.swift */,
+				15CE12351A0829090001A630 /* AddReminderViewController.swift */,
 			);
 			name = "Controller Layer";
 			sourceTree = "<group>";
