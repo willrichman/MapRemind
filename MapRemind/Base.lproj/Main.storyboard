@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SHz-jd-o3t">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -26,7 +26,7 @@
         <!--Item 1-->
         <scene sceneID="Tqh-Ip-uM2">
             <objects>
-                <viewController id="3om-VQ-aqa" sceneMemberID="viewController">
+                <viewController id="3om-VQ-aqa" customClass="MapViewController" customModule="MapRemind" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Y8P-1x-q9L"/>
                         <viewControllerLayoutGuide type="bottom" id="EkH-W2-aCe"/>
@@ -48,6 +48,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="F8x-Tg-1hg"/>
+                    <connections>
+                        <outlet property="mapView" destination="nXk-3J-6lr" id="4GE-HM-La3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M2D-He-iep" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
