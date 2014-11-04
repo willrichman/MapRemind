@@ -80,7 +80,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
 
-    //MARK: - MapViewDelegate Annotation methods
+    //MARK: - MapViewDelegate methods
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "ANNOTATION")
@@ -97,6 +97,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         reminderVC.selectedAnnotation = view.annotation
         self.presentViewController(reminderVC, animated: true) { () -> Void in
         }
+    }
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        let renderer = MKCircleRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.blueColor()
+        renderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
+        renderer.lineWidth = 1.0
+        return renderer
     }
     
     //MARK: - Notification Center Selectors
