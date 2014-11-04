@@ -425,6 +425,7 @@
 				15CE122C1A081FC60001A630 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		15CE122D1A081FC60001A630 /* Build configuration list for PBXNativeTarget "MapRemindTests" */ = {
 			isa = XCConfigurationList;
@@ -433,6 +434,7 @@
 				15CE122F1A081FC60001A630 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

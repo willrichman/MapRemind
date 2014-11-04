@@ -19,6 +19,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reminderAdded:", name: "REMINDER_ADDED", object: nil)
+        
         self.locationManager.delegate = self
 
         self.mapView.delegate = self
@@ -43,6 +45,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     //MARK: - LocationManagerDelegate methods
     
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -56,7 +62,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         if let location = locations.last as? CLLocation {
-            println("\(location.coordinate.latitude), \(location.coordinate.longitude)")
+            //println("\(location.coordinate.latitude), \(location.coordinate.longitude)")
         }
     }
     
@@ -92,4 +98,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.presentViewController(reminderVC, animated: true) { () -> Void in
         }
     }
+    
+    //MARK: - Notification Center Selectors
+    
+    func reminderAdded(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let geoRegion = userInfo["region"] as CLCircularRegion
+        let overlay = MKCircle(centerCoordinate: geoRegion.center, radius: geoRegion.radius)
+        self.mapView.addOverlay(overlay)
+    }
+    
 }
