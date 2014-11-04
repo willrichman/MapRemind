@@ -114,6 +114,9 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="mapView" destination="VXo-fy-qmv" id="UYd-9w-GLr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8o-wD-KLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

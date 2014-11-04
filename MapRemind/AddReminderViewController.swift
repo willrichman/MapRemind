@@ -12,13 +12,22 @@ import MapKit
 
 class AddReminderViewController: UIViewController {
     
+    @IBOutlet weak var mapView: MKMapView!
     var locationManager : CLLocationManager!
     var selectedAnnotation : MKAnnotation!
+    var mapRegion : MKCoordinateRegion?
+    var mapSpan : MKCoordinateSpan?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.mapSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        self.mapRegion = MKCoordinateRegion(center: self.selectedAnnotation.coordinate, span: self.mapSpan!)
+        self.mapView.centerCoordinate = self.selectedAnnotation.coordinate
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.mapView.setRegion(self.mapRegion!, animated: true)
     }
 
     @IBAction func didPressSaveReminderButton(sender: AnyObject) {
@@ -34,5 +43,7 @@ class AddReminderViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
         })
     }
+    
+    
     
 }
