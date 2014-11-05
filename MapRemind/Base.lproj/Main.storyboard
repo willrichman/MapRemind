@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Reminders-->
         <scene sceneID="IrZ-Qa-iWg">
             <objects>
-                <viewController id="sXc-u2-KTs" sceneMemberID="viewController">
+                <viewController id="sXc-u2-KTs" customClass="ReminderTableViewController" customModule="MapRemind" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DDp-4I-2lM"/>
                         <viewControllerLayoutGuide type="bottom" id="qB1-Lm-GRp"/>
@@ -16,9 +16,21 @@
                     <view key="view" contentMode="scaleToFill" id="8Be-8b-CU8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="t1W-Cd-Bwb">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="t1W-Cd-Bwb" secondAttribute="trailing" constant="-16" id="1hY-Na-vKE"/>
+                            <constraint firstItem="t1W-Cd-Bwb" firstAttribute="leading" secondItem="8Be-8b-CU8" secondAttribute="leadingMargin" constant="-16" id="Mzw-hS-hiv"/>
+                            <constraint firstItem="qB1-Lm-GRp" firstAttribute="top" secondItem="t1W-Cd-Bwb" secondAttribute="bottom" id="ORs-qd-L7A"/>
+                            <constraint firstItem="t1W-Cd-Bwb" firstAttribute="top" secondItem="8Be-8b-CU8" secondAttribute="topMargin" id="U2n-tX-84t"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="huf-Yv-vsL"/>
+                    <tabBarItem key="tabBarItem" title="Reminders" id="huf-Yv-vsL"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jdY-rS-AG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -48,7 +60,7 @@
                             <constraint firstItem="EkH-W2-aCe" firstAttribute="top" secondItem="nXk-3J-6lr" secondAttribute="bottom" id="fel-T5-4As"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map View" id="F8x-Tg-1hg"/>
+                    <tabBarItem key="tabBarItem" title="Map" id="F8x-Tg-1hg"/>
                     <connections>
                         <outlet property="mapView" destination="nXk-3J-6lr" id="4GE-HM-La3"/>
                     </connections>

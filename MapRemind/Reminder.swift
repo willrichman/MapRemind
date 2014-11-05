@@ -9,6 +9,7 @@
 import CoreData
 
 class Reminder: NSManagedObject {
+    
     @NSManaged var identifier : String
     @NSManaged var date : NSDate
     @NSManaged var radius : Double

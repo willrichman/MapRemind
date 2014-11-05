@@ -11,7 +11,7 @@ import MapKit
 
 class CoreDataHandler {
     
-    var managedObjectContext : NSManagedObjectContext
+    var managedObjectContext : NSManagedObjectContext!
     
     init(context: NSManagedObjectContext) {
         self.managedObjectContext = context
