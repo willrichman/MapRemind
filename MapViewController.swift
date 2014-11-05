@@ -9,15 +9,22 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreData
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
+    var managedObjectContext : NSManagedObjectContext?
+    var coreDataHandler : CoreDataHandler?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        self.managedObjectContext = appDelegate.managedObjectContext!
+        self.coreDataHandler = CoreDataHandler(context: self.managedObjectContext!)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reminderAdded:", name: "REMINDER_ADDED", object: nil)
         
@@ -28,6 +35,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         let longPress = UILongPressGestureRecognizer(target: self, action: "didLongPressMap:")
         self.mapView.addGestureRecognizer(longPress)
+        
+        if let reminders = self.coreDataHandler?.fetchReminders() {
+            println(reminders.last?.identifier)
+        }
         
         switch CLLocationManager.authorizationStatus() as CLAuthorizationStatus {
         case .Authorized:
@@ -95,6 +106,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let reminderVC = self.storyboard?.instantiateViewControllerWithIdentifier("REMINDER_VC") as AddReminderViewController
         reminderVC.locationManager = self.locationManager
         reminderVC.selectedAnnotation = view.annotation
+        reminderVC.coreDataHandler = self.coreDataHandler
         self.presentViewController(reminderVC, animated: true) { () -> Void in
         }
     }

@@ -10,29 +10,42 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class AddReminderViewController: UIViewController {
+class AddReminderViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     var locationManager : CLLocationManager!
     var selectedAnnotation : MKAnnotation!
     var mapRegion : MKCoordinateRegion?
-    var mapSpan : MKCoordinateSpan?
+    var coreDataHandler : CoreDataHandler?
+    var reminderRadius = 1000.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mapSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        self.mapRegion = MKCoordinateRegion(center: self.selectedAnnotation.coordinate, span: self.mapSpan!)
+        self.mapView.delegate = self
+        self.mapRegion = MKCoordinateRegionMakeWithDistance(self.selectedAnnotation.coordinate, self.reminderRadius * 2, self.reminderRadius * 2)
         self.mapView.centerCoordinate = self.selectedAnnotation.coordinate
-        // Do any additional setup after loading the view.
+        self.mapView.setRegion(self.mapRegion!, animated: false)
+        
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.mapView.setRegion(self.mapRegion!, animated: true)
+        super.viewDidAppear(animated)
+        let overlay = MKCircle(centerCoordinate: self.selectedAnnotation.coordinate, radius: self.reminderRadius)
+        self.mapView.addOverlay(overlay)
+    }
+
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        let renderer = MKCircleRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.blueColor()
+        renderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
+        renderer.lineWidth = 1.0
+        return renderer
     }
 
     @IBAction func didPressSaveReminderButton(sender: AnyObject) {
-        var geoRegion = CLCircularRegion(center: selectedAnnotation.coordinate, radius: 100.0, identifier: "TestRegion")
+        var geoRegion = CLCircularRegion(center: selectedAnnotation.coordinate, radius: self.reminderRadius, identifier: "TestRegion")
         self.locationManager .startMonitoringForRegion(geoRegion)
+        self.coreDataHandler?.saveReminder("Default", radius: geoRegion.radius, coordinate: geoRegion.center)
         
         NSNotificationCenter.defaultCenter().postNotificationName("REMINDER_ADDED", object: self, userInfo: ["region": geoRegion])
         
@@ -45,7 +58,5 @@ class AddReminderViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
         })
     }
-    
-    
     
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		156FB76E1A09800600BEC7A3 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156FB76D1A09800600BEC7A3 /* Reminder.swift */; };
+		156FB7711A09873200BEC7A3 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156FB7701A09873200BEC7A3 /* CoreDataHandler.swift */; };
 		15CE120E1A081FC60001A630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE120D1A081FC60001A630 /* AppDelegate.swift */; };
 		15CE12111A081FC60001A630 /* MapRemind.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15CE120F1A081FC60001A630 /* MapRemind.xcdatamodeld */; };
 		15CE12161A081FC60001A630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15CE12141A081FC60001A630 /* Main.storyboard */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		156FB76D1A09800600BEC7A3 /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		156FB7701A09873200BEC7A3 /* CoreDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		15CE12081A081FC60001A630 /* MapRemind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapRemind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15CE120C1A081FC60001A630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15CE120D1A081FC60001A630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		156FB76F1A09801C00BEC7A3 /* Model Layer */ = {
+			isa = PBXGroup;
+			children = (
+				156FB7701A09873200BEC7A3 /* CoreDataHandler.swift */,
+				156FB76D1A09800600BEC7A3 /* Reminder.swift */,
+			);
+			name = "Model Layer";
+			sourceTree = "<group>";
+		};
 		15CE11FF1A081FC60001A630 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				15CE12341A0824690001A630 /* Controller Layer */,
+				156FB76F1A09801C00BEC7A3 /* Model Layer */,
 				15CE12141A081FC60001A630 /* Main.storyboard */,
 				15CE12171A081FC60001A630 /* Images.xcassets */,
 				15CE12191A081FC60001A630 /* LaunchScreen.xib */,
@@ -229,9 +243,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				15CE12361A0829090001A630 /* AddReminderViewController.swift in Sources */,
+				156FB7711A09873200BEC7A3 /* CoreDataHandler.swift in Sources */,
 				15CE120E1A081FC60001A630 /* AppDelegate.swift in Sources */,
 				15CE12111A081FC60001A630 /* MapRemind.xcdatamodeld in Sources */,
 				15CE12331A08245F0001A630 /* MapViewController.swift in Sources */,
+				156FB76E1A09800600BEC7A3 /* Reminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
