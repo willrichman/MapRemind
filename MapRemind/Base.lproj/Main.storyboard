@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="t1W-Cd-Bwb">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="REMINDER_CELL" id="ahY-y9-RZo">
@@ -35,10 +35,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="t1W-Cd-Bwb" secondAttribute="trailing" constant="-16" id="1hY-Na-vKE"/>
                             <constraint firstItem="t1W-Cd-Bwb" firstAttribute="leading" secondItem="8Be-8b-CU8" secondAttribute="leadingMargin" constant="-16" id="Mzw-hS-hiv"/>
                             <constraint firstItem="qB1-Lm-GRp" firstAttribute="top" secondItem="t1W-Cd-Bwb" secondAttribute="bottom" id="ORs-qd-L7A"/>
-                            <constraint firstItem="t1W-Cd-Bwb" firstAttribute="top" secondItem="8Be-8b-CU8" secondAttribute="topMargin" id="U2n-tX-84t"/>
+                            <constraint firstItem="t1W-Cd-Bwb" firstAttribute="top" secondItem="DDp-4I-2lM" secondAttribute="bottom" id="bIt-6G-N15"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Reminders" id="huf-Yv-vsL"/>
+                    <tabBarItem key="tabBarItem" title="Reminders" image="Reminder" id="huf-Yv-vsL"/>
                     <connections>
                         <outlet property="tableView" destination="t1W-Cd-Bwb" id="TdJ-Gw-scH"/>
                     </connections>
@@ -60,18 +60,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nXk-3J-6lr">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nXk-3J-6lr" firstAttribute="top" secondItem="xaQ-ls-JpO" secondAttribute="top" id="K1y-kn-2ub"/>
+                            <constraint firstItem="nXk-3J-6lr" firstAttribute="top" secondItem="Y8P-1x-q9L" secondAttribute="bottom" id="PzQ-Hj-Xzc"/>
                             <constraint firstAttribute="trailing" secondItem="nXk-3J-6lr" secondAttribute="trailing" id="Rvm-5c-KQ4"/>
                             <constraint firstItem="nXk-3J-6lr" firstAttribute="leading" secondItem="xaQ-ls-JpO" secondAttribute="leading" id="YLh-Cg-65K"/>
                             <constraint firstItem="EkH-W2-aCe" firstAttribute="top" secondItem="nXk-3J-6lr" secondAttribute="bottom" id="fel-T5-4As"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="F8x-Tg-1hg"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" id="F8x-Tg-1hg"/>
                     <connections>
                         <outlet property="mapView" destination="nXk-3J-6lr" id="4GE-HM-La3"/>
                     </connections>
@@ -100,13 +101,13 @@
                                 </constraints>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save this Reminder location?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dt8-UD-z0a">
-                                <rect key="frame" x="189" y="130" width="223" height="24"/>
+                                <rect key="frame" x="189.5" y="130.5" width="222.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AWw-18-Wfm">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="bEd-IY-erP"/>
                                 </constraints>
@@ -127,13 +128,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="AWw-18-Wfm" firstAttribute="top" secondItem="lIU-6g-8Lq" secondAttribute="bottom" id="YSe-3t-h6K"/>
                             <constraint firstAttribute="centerY" secondItem="VXo-fy-qmv" secondAttribute="centerY" id="aHP-ab-0oQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AWw-18-Wfm" secondAttribute="trailing" constant="-16" id="gLv-Fv-MdS"/>
                             <constraint firstAttribute="centerX" secondItem="Dt8-UD-z0a" secondAttribute="centerX" constant="-0.5" id="n2L-GJ-gaQ"/>
                             <constraint firstAttribute="centerX" secondItem="VXo-fy-qmv" secondAttribute="centerX" id="oeO-Xb-PY2"/>
                             <constraint firstItem="AWw-18-Wfm" firstAttribute="leading" secondItem="iRx-cC-6DD" secondAttribute="leadingMargin" constant="-16" id="tGs-pT-JmP"/>
                             <constraint firstItem="VXo-fy-qmv" firstAttribute="top" secondItem="Dt8-UD-z0a" secondAttribute="bottom" constant="21" id="y2O-L6-gVo"/>
-                            <constraint firstItem="AWw-18-Wfm" firstAttribute="top" secondItem="iRx-cC-6DD" secondAttribute="topMargin" id="zOm-Rr-XBd"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -165,4 +166,8 @@
             <point key="canvasLocation" x="-51" y="328"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Map" width="25" height="25"/>
+        <image name="Reminder" width="30" height="30"/>
+    </resources>
 </document>

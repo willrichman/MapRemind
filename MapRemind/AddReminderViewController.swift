@@ -17,12 +17,12 @@ class AddReminderViewController: UIViewController, MKMapViewDelegate {
     var selectedAnnotation : MKAnnotation!
     var mapRegion : MKCoordinateRegion?
     var coreDataHandler : CoreDataHandler?
-    var reminderRadius = 1000.0
+    var reminderRadius = 500.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
-        self.mapRegion = MKCoordinateRegionMakeWithDistance(self.selectedAnnotation.coordinate, self.reminderRadius * 2, self.reminderRadius * 2)
+        self.mapRegion = MKCoordinateRegionMakeWithDistance(self.selectedAnnotation.coordinate, self.reminderRadius * 2, self.reminderRadius * 3)
         self.mapView.centerCoordinate = self.selectedAnnotation.coordinate
         self.mapView.setRegion(self.mapRegion!, animated: false)
         
