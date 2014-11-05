@@ -9,11 +9,12 @@
 import UIKit
 import CoreData
 
-class ReminderTableViewController: UIViewController, UITableViewDataSource {
+class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFetchedResultsControllerDelegate {
 
-    var managedObjectContext : NSManagedObjectContext?
+    @IBOutlet weak var tableView: UITableView!
+    var managedObjectContext : NSManagedObjectContext!
+    var fetchedResultsController: NSFetchedResultsController!
     var coreDataHandler : CoreDataHandler?
-    var reminders = [Reminder]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,16 +22,48 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         self.managedObjectContext = appDelegate.managedObjectContext!
         self.coreDataHandler = CoreDataHandler(context: self.managedObjectContext!)
+        
+        self.tableView.dataSource = self
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didGetCloudChanges:", name: NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: appDelegate.persistentStoreCoordinator)
+        
+        var fetchRequest = NSFetchRequest(entityName: "Reminder")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "identifier", ascending: true)]
+        
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "Reminders")
+        self.fetchedResultsController.delegate = self
+        
+        var error : NSError?
+        if !self.fetchedResultsController.performFetch(&error) {
+            println("error!!")
+        }
+        
     }
+    
+    //MARK: Table view delegate methods
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reminders.count
+        return self.fetchedResultsController.fetchedObjects?.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("REMINDER_CELL", forIndexPath: indexPath) as? UITableViewCell
-        cell?.textLabel.text = self.reminders[indexPath.row].identifier
+        let reminder = self.fetchedResultsController.fetchedObjects?[indexPath.row] as Reminder
+        cell?.textLabel.text = reminder.identifier
         return cell!
     }
+    
+    //MARK: iCloud Notification handlers
+    
+    func didGetCloudChanges( notification : NSNotification)
+    {
+        self.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
+    }
 
+    //MARK: FetchedResultsController methods
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.reloadData()
+    }
+    
 }

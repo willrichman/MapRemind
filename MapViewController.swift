@@ -37,7 +37,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.mapView.addGestureRecognizer(longPress)
         
         if let reminders = self.coreDataHandler?.fetchReminders() {
-            println(reminders.last?.identifier)
+            for reminder in reminders {
+                
+            }
         }
         
         switch CLLocationManager.authorizationStatus() as CLAuthorizationStatus {
