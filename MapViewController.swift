@@ -27,6 +27,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         self.coreDataHandler = CoreDataHandler(context: self.managedObjectContext!)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reminderAdded:", name: "REMINDER_ADDED", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reminderDeleted:", name: "REMINDER_DELETED", object: nil)
         
         self.locationManager.delegate = self
 
@@ -138,6 +139,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let geoRegion = userInfo["region"] as CLCircularRegion
         let overlay = MKCircle(centerCoordinate: geoRegion.center, radius: geoRegion.radius)
         self.mapView.addOverlay(overlay)
+    }
+    
+    func reminderDeleted(notification: NSNotification) {
+        let notificationInfo = notification.userInfo!
+        let regionToDelete = notificationInfo["reminder"] as Reminder
+        for region in self.locationManager.monitoredRegions {
+        }
     }
     
 }

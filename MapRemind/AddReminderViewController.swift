@@ -12,6 +12,7 @@ import MapKit
 
 class AddReminderViewController: UIViewController, MKMapViewDelegate {
     
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     var locationManager : CLLocationManager!
     var selectedAnnotation : MKAnnotation!
@@ -43,10 +44,12 @@ class AddReminderViewController: UIViewController, MKMapViewDelegate {
     }
 
     @IBAction func didPressSaveReminderButton(sender: AnyObject) {
+        if self.nameTextField.text != nil {
+            
+        }
         var geoRegion = CLCircularRegion(center: selectedAnnotation.coordinate, radius: self.reminderRadius, identifier: "TestRegion")
         self.locationManager .startMonitoringForRegion(geoRegion)
         self.coreDataHandler?.saveReminder("Default", radius: geoRegion.radius, coordinate: geoRegion.center)
-        
         NSNotificationCenter.defaultCenter().postNotificationName("REMINDER_ADDED", object: self, userInfo: ["region": geoRegion])
         
         self.dismissViewControllerAnimated(true, completion: { () -> Void in

@@ -40,7 +40,7 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
         
     }
     
-    //MARK: Table view delegate methods
+    //MARK: Table view datasource methods
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.fetchedResultsController.fetchedObjects?.count ?? 0
@@ -51,6 +51,18 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
         let reminder = self.fetchedResultsController.fetchedObjects?[indexPath.row] as Reminder
         cell?.textLabel.text = reminder.identifier
         return cell!
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            let reminderToDelete = self.fetchedResultsController.objectAtIndexPath(indexPath) as Reminder
+            NSNotificationCenter.defaultCenter().postNotificationName("REMINDER_DELETED", object: self, userInfo: ["reminder": reminderToDelete])
+            self.managedObjectContext.deleteObject(reminderToDelete)
+        }
     }
     
     //MARK: iCloud Notification handlers
