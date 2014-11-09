@@ -79,6 +79,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
+    func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+        if let circularRegion = region as? CLCircularRegion {
+            if (UIApplication.sharedApplication().applicationState == UIApplicationState.Background) {
+                let notification = UILocalNotification()
+                notification.alertBody = "You trigger a notification!"
+                UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+            }
+        }
+    }
+    
     //MARK: - Gesture methods
     
     func didLongPressMap(sender: UILongPressGestureRecognizer) {

@@ -93,15 +93,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXo-fy-qmv">
-                                <rect key="frame" x="175" y="175" width="250" height="250"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="Vev-EY-J08"/>
-                                    <constraint firstAttribute="width" constant="250" id="w96-cO-kjx"/>
-                                </constraints>
-                            </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save this Reminder location?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dt8-UD-z0a">
-                                <rect key="frame" x="189.5" y="130.5" width="222.5" height="23.5"/>
+                                <rect key="frame" x="189" y="105" width="222.5" height="23.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -125,9 +118,27 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name this reminder" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ftt-UR-3ma">
+                                <rect key="frame" x="175" y="458" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="LA8-rt-NeF"/>
+                                    <constraint firstAttribute="height" constant="30" id="TCz-nn-rgm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXo-fy-qmv">
+                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Vev-EY-J08"/>
+                                    <constraint firstAttribute="width" constant="300" id="w96-cO-kjx"/>
+                                </constraints>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Ftt-UR-3ma" secondAttribute="centerX" id="9VQ-sI-Yrj"/>
+                            <constraint firstItem="Ftt-UR-3ma" firstAttribute="top" secondItem="VXo-fy-qmv" secondAttribute="bottom" constant="8" id="Qdj-Yi-tbH"/>
                             <constraint firstItem="AWw-18-Wfm" firstAttribute="top" secondItem="lIU-6g-8Lq" secondAttribute="bottom" id="YSe-3t-h6K"/>
                             <constraint firstAttribute="centerY" secondItem="VXo-fy-qmv" secondAttribute="centerY" id="aHP-ab-0oQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AWw-18-Wfm" secondAttribute="trailing" constant="-16" id="gLv-Fv-MdS"/>
@@ -140,6 +151,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="mapView" destination="VXo-fy-qmv" id="UYd-9w-GLr"/>
+                        <outlet property="nameTextField" destination="Ftt-UR-3ma" id="qFG-KG-5r5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U8o-wD-KLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
