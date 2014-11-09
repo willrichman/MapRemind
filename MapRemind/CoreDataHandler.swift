@@ -17,9 +17,10 @@ class CoreDataHandler {
         self.managedObjectContext = context
     }
     
-    func saveReminder(name: String, radius: Double, coordinate: CLLocationCoordinate2D) {
+    func saveReminder(identifier: String, radius: Double, coordinate: CLLocationCoordinate2D, userText: String) {
         var reminderToSave = NSEntityDescription.insertNewObjectForEntityForName("Reminder", inManagedObjectContext: self.managedObjectContext) as Reminder
-        reminderToSave.identifier = name
+        reminderToSave.identifier = identifier
+        reminderToSave.userText = userText
         reminderToSave.radius = radius
         reminderToSave.date = NSDate()
         reminderToSave.latitude = coordinate.latitude

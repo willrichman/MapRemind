@@ -49,7 +49,7 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("REMINDER_CELL", forIndexPath: indexPath) as? UITableViewCell
         let reminder = self.fetchedResultsController.fetchedObjects?[indexPath.row] as Reminder
-        cell?.textLabel.text = reminder.identifier
+        cell?.textLabel.text = reminder.userText
         return cell!
     }
     
@@ -62,6 +62,12 @@ class ReminderTableViewController: UIViewController, UITableViewDataSource, NSFe
             let reminderToDelete = self.fetchedResultsController.objectAtIndexPath(indexPath) as Reminder
             NSNotificationCenter.defaultCenter().postNotificationName("REMINDER_DELETED", object: self, userInfo: ["reminder": reminderToDelete])
             self.managedObjectContext.deleteObject(reminderToDelete)
+            var error: NSError?
+            self.managedObjectContext.save(&error)
+            if error != nil {
+                println(error?.localizedDescription)
+            }
+
         }
     }
     

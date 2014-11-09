@@ -15,5 +15,6 @@ class Reminder: NSManagedObject {
     @NSManaged var radius : Double
     @NSManaged var latitude : Double
     @NSManaged var longitude : Double
+    @NSManaged var userText : String
     
 }

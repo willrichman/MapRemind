@@ -145,7 +145,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let notificationInfo = notification.userInfo!
         let regionToDelete = notificationInfo["reminder"] as Reminder
         for region in self.locationManager.monitoredRegions {
+            if region.identifier == regionToDelete.identifier {
+                self.locationManager.stopMonitoringForRegion(region as CLRegion)
+                println("region deleted")
+            }
         }
     }
-    
 }

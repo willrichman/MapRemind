@@ -44,12 +44,19 @@ class AddReminderViewController: UIViewController, MKMapViewDelegate {
     }
 
     @IBAction func didPressSaveReminderButton(sender: AnyObject) {
-        if self.nameTextField.text != nil {
-            
+        if self.nameTextField.text == nil || countElements(self.nameTextField.text) == 0 {
+            let alert = UIAlertController(title: "Error", message: "You must enter a name for this reminder.", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
+            })
+            alert.addAction(okAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
         }
-        var geoRegion = CLCircularRegion(center: selectedAnnotation.coordinate, radius: self.reminderRadius, identifier: "TestRegion")
+        let identifier = NSDate().timeIntervalSinceReferenceDate
+        var geoRegion = CLCircularRegion(center: selectedAnnotation.coordinate, radius: self.reminderRadius, identifier: "\(identifier)")
         self.locationManager .startMonitoringForRegion(geoRegion)
-        self.coreDataHandler?.saveReminder("Default", radius: geoRegion.radius, coordinate: geoRegion.center)
+        
+        self.coreDataHandler?.saveReminder("\(identifier)", radius: geoRegion.radius, coordinate: geoRegion.center, userText: self.nameTextField.text)
         NSNotificationCenter.defaultCenter().postNotificationName("REMINDER_ADDED", object: self, userInfo: ["region": geoRegion])
         
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
