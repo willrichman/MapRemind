@@ -57,7 +57,7 @@ class AddReminderViewController: UIViewController, MKMapViewDelegate {
         self.locationManager .startMonitoringForRegion(geoRegion)
         
         self.coreDataHandler?.saveReminder("\(identifier)", radius: geoRegion.radius, coordinate: geoRegion.center, userText: self.nameTextField.text)
-        NSNotificationCenter.defaultCenter().postNotificationName("REMINDER_ADDED", object: self, userInfo: ["region": geoRegion])
+        NSNotificationCenter.defaultCenter().postNotificationName("REMINDER_ADDED", object: self, userInfo: ["region": geoRegion, "name": self.nameTextField.text])
         
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
         })

@@ -18,6 +18,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     let locationManager = CLLocationManager()
     var managedObjectContext : NSManagedObjectContext?
     var coreDataHandler : CoreDataHandler?
+    var overlays = [MKOverlay]()
+    var annotations = [MKAnnotation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +41,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         if let reminders = self.coreDataHandler?.fetchReminders() {
             for reminder in reminders {
-                
+                let coordinate = CLLocationCoordinate2D(latitude: reminder.latitude, longitude: reminder.longitude)
+                let overlay = MKCircle(centerCoordinate: coordinate, radius: reminder.radius)
+                self.mapView.addOverlay(overlay)
+                self.overlays.append(overlay)
+                var annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotation.title = reminder.userText
+                self.mapView.addAnnotation(annotation)
+                self.annotations.append(annotation)
             }
         }
         
@@ -110,24 +120,32 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "ANNOTATION")
         annotationView.animatesDrop = true
         annotationView.canShowCallout = true
-        let addButton = UIButton.buttonWithType(UIButtonType.ContactAdd) as UIButton
-        annotationView.rightCalloutAccessoryView = addButton
+        if annotation.title == "Add a reminder?" {
+            let addButton = UIButton.buttonWithType(UIButtonType.ContactAdd) as UIButton
+            annotationView.rightCalloutAccessoryView = addButton
+        } else {
+            let detailsButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
+            annotationView.rightCalloutAccessoryView = detailsButton
+        }
         return annotationView
     }
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        let reminderVC = self.storyboard?.instantiateViewControllerWithIdentifier("REMINDER_VC") as AddReminderViewController
-        reminderVC.locationManager = self.locationManager
-        reminderVC.selectedAnnotation = view.annotation
-        reminderVC.coreDataHandler = self.coreDataHandler
-        self.presentViewController(reminderVC, animated: true) { () -> Void in
+        let buttonTapped = control as UIButton
+        if buttonTapped.buttonType == UIButtonType.ContactAdd {
+            let reminderVC = self.storyboard?.instantiateViewControllerWithIdentifier("REMINDER_VC") as AddReminderViewController
+            reminderVC.locationManager = self.locationManager
+            reminderVC.selectedAnnotation = view.annotation
+            reminderVC.coreDataHandler = self.coreDataHandler
+            self.presentViewController(reminderVC, animated: true) { () -> Void in
+            }
         }
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
         let renderer = MKCircleRenderer(overlay: overlay)
         renderer.strokeColor = UIColor.blueColor()
-        renderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
+        renderer.fillColor = UIColor.blueColor().colorWithAlphaComponent(0.3)
         renderer.lineWidth = 1.0
         return renderer
     }
@@ -137,8 +155,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func reminderAdded(notification: NSNotification) {
         let userInfo = notification.userInfo!
         let geoRegion = userInfo["region"] as CLCircularRegion
+        let name = userInfo["name"] as String
         let overlay = MKCircle(centerCoordinate: geoRegion.center, radius: geoRegion.radius)
         self.mapView.addOverlay(overlay)
+        self.overlays.append(overlay)
+        var annotation = MKPointAnnotation()
+        annotation.coordinate = geoRegion.center
+        annotation.title = name
+        self.mapView.addAnnotation(annotation)
+        self.annotations.append(annotation)
     }
     
     func reminderDeleted(notification: NSNotification) {
@@ -148,6 +173,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             if region.identifier == regionToDelete.identifier {
                 self.locationManager.stopMonitoringForRegion(region as CLRegion)
                 println("region deleted")
+            }
+        }
+        for overlay in overlays {
+            if overlay.coordinate.latitude == regionToDelete.latitude && overlay.coordinate.longitude == regionToDelete.longitude {
+                self.mapView.removeOverlay(overlay)
+            }
+        }
+        for annotation in annotations {
+            if annotation.coordinate.latitude == regionToDelete.latitude && annotation.coordinate.longitude == regionToDelete.longitude {
+                self.mapView.removeAnnotation(annotation)
             }
         }
     }
